@@ -17,7 +17,6 @@ RUN apt-get update && \
     libssl-dev \
     pkgconf \
     sudo \
-    zip \
     xutils-dev \
     python \
     && apt-get clean
@@ -36,6 +35,11 @@ ENTRYPOINT ["fixuid"]
 
 # Allow sudo without a password.
 ADD sudoers /etc/sudoers.d/nopasswd
+
+# Node, mostly for serverless install
+RUN \
+curl https://nodejs.org/download/release/latest-v9.x/node-v9.11.2-linux-x64.tar.xz | tar --strip-components 1 -Jx -C /usr/
+RUN npm install serverless -g
 
 # Static linking for C++ code
 RUN sudo ln -s "/usr/bin/g++" "/usr/bin/musl-g++"
