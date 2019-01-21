@@ -17,6 +17,7 @@ RUN apt-get update && \
     libssl-dev \
     pkgconf \
     sudo \
+    zip \
     xutils-dev \
     python \
     && apt-get clean
